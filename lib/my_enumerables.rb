@@ -8,4 +8,11 @@ end
 # to this method
 class Array
   # Define my_each here
+  def my_each
+    return to_enum(:my_each) unless block_given?
+
+    for item in self
+      yield(item)
+    end
+  end
 end
