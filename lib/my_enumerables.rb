@@ -21,11 +21,10 @@ module Enumerable
   end
 
   def my_all?
-    true_arr = []
     self.my_each do |item|
-      true_arr << true if yield(item)
+      return false unless yield(item)
     end
-    true_arr.length == self.length ? true : false
+    true
   end
 
   def my_any?
@@ -63,6 +62,12 @@ module Enumerable
       new_arr << yield(item) 
     end
     new_arr
+  end
+
+  def my_inject(initial = self.first)
+    acc = initial
+    self.each { |item| acc = yield(acc, item)}
+    acc
   end
 end
 
