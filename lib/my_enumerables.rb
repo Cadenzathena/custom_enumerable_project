@@ -27,6 +27,13 @@ module Enumerable
     end
     true_arr.length == self.length ? true : false
   end
+
+  def my_any?
+    self.my_each do |item|
+      return true if yield(item)
+    end
+    false
+  end
 end
 
 # You will first have to define my_each
