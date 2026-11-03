@@ -54,6 +54,16 @@ module Enumerable
     self.my_each { |item| yield(item) ? count += 1 : next }
     count
   end
+
+  def my_map
+    return to_enum(:my_map) unless block_given?
+
+    new_arr = []
+    self.each do |item|
+      new_arr << yield(item) 
+    end
+    new_arr
+  end
 end
 
 # You will first have to define my_each
