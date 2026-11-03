@@ -9,6 +9,16 @@ module Enumerable
       index += 1
     end
   end
+
+  def my_select
+    return to_enum(:my_select) unless block_given?
+
+    selection_arr = []
+    self.my_each do |item|
+      selection_arr << item if yield(item)
+    end
+    selection_arr
+  end
 end
 
 # You will first have to define my_each
