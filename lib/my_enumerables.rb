@@ -41,6 +41,19 @@ module Enumerable
     end
     true
   end
+
+  def my_count
+    count = 0
+    count_all = -> do
+      self.my_each { |item| count += 1 }
+      count
+    end
+    return count_all.call unless block_given?
+
+
+    self.my_each { |item| yield(item) ? count += 1 : next }
+    count
+  end
 end
 
 # You will first have to define my_each
