@@ -19,6 +19,14 @@ module Enumerable
     end
     selection_arr
   end
+
+  def my_all?
+    true_arr = []
+    self.my_each do |item|
+      true_arr << true if yield(item)
+    end
+    true_arr.length == self.length ? true : false
+  end
 end
 
 # You will first have to define my_each
